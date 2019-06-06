@@ -10,41 +10,69 @@ const formBoxStyle = {
 
 class Form extends React.Component {
     state = {
-        fValue: '',
-        lValue: ''
+        inputvalue: '',
+        fvalue: '',
+        lvalue: ''
     }
     onFormSubmit = (evt) => {
         console.log('submit')
         evt.preventDefault()
         this.setState({
-            inputvalue: ''
+            inputvalue: '',
+            fvalue: '',
+            lvalue: ''
         })
     }
-    onInputChange = (evt) => {
-        console.log('input value:', evt.target.value)
+    // onInputChange = (evt) => {
+    //     console.log('input value:', evt.target.value)
+    //     evt.preventDefault()
+    //     let value = evt.target.value
+    //     let name = evt.target.name
+    //     console.log('target:', name)
+    //     this.setState({
+    //         inputvalue: value,
+    //     })
+    // }
+
+    onInputFChange = (evt) => {
         evt.preventDefault()
         let value = evt.target.value
         let name = evt.target.name
         console.log('target:', name)
-        this.setState({
-            [name]: value,
-        })
+        this.setState(prevState => {
+            return {
+                ...prevState, fvalue: value,
+            }
+        }, () => console.log(this.state.fvalue))
+    }
+    onInputLChange = (evt) => {
+        evt.preventDefault()
+        let value = evt.target.value
+        let name = evt.target.name
+        console.log('target:', name)
+        this.setState(prevState => {
+            return {
+                ...prevState, lvalue: value,
+            }
+        }, () => console.log(this.state.lvalue))
     }
     render() {
+        console.log('inputValue value ===== >', this.state.inputvalue)
         return (
             <div style={formBoxStyle}>
                 <form
-                    onSubmit={this.onFormSubmit}>
+                    onSubmit={this.onFormSubmit}
+                >
                     <Input
                         name="fName"
-                        inputValue={this.state.inputvalue}
-                        onInputChange={this.onInputChange}
+                        inputValue={this.state.fvalue}
+                        onInputChange={this.onInputFChange}
                         placeholder="Enter your first name"
                     />
                     <Input
                         name="lName"
-                        inputValue={this.state.inputvalue}
-                        onInputChange={this.onInputChange}
+                        inputValue={this.state.lvalue}
+                        onInputChange={this.onInputLChange}
                         placeholder="Enter your last name"
                     />
                     <Button title="submit" />
