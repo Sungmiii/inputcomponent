@@ -10,7 +10,6 @@ const formBoxStyle = {
 
 class Form extends React.Component {
     state = {
-        inputvalue: '',
         fvalue: '',
         lvalue: ''
     }
@@ -18,44 +17,46 @@ class Form extends React.Component {
         console.log('submit')
         evt.preventDefault()
         this.setState({
-            inputvalue: '',
             fvalue: '',
             lvalue: ''
         })
     }
-    // onInputChange = (evt) => {
-    //     console.log('input value:', evt.target.value)
+    onInputChange = (evt) => {
+        console.log('input value:', evt.target.value)
+        evt.preventDefault()
+        let value = evt.target.value
+        let name = evt.target.name
+        console.log('target:', name)
+        if (evt.target.name === 'fName') {
+            this.setState({
+                fvalue: value,
+            })
+        } else if (evt.target.name === 'lName') {
+            this.setState({
+                lvalue: value,
+            })
+        }
+
+    }
+
+    // onInputFChange = (evt) => {
     //     evt.preventDefault()
     //     let value = evt.target.value
     //     let name = evt.target.name
     //     console.log('target:', name)
     //     this.setState({
-    //         inputvalue: value,
+    //         fvalue: value,
     //     })
     // }
-
-    onInputFChange = (evt) => {
-        evt.preventDefault()
-        let value = evt.target.value
-        let name = evt.target.name
-        console.log('target:', name)
-        this.setState(prevState => {
-            return {
-                ...prevState, fvalue: value,
-            }
-        }, () => console.log(this.state.fvalue))
-    }
-    onInputLChange = (evt) => {
-        evt.preventDefault()
-        let value = evt.target.value
-        let name = evt.target.name
-        console.log('target:', name)
-        this.setState(prevState => {
-            return {
-                ...prevState, lvalue: value,
-            }
-        }, () => console.log(this.state.lvalue))
-    }
+    // onInputLChange = (evt) => {
+    //     evt.preventDefault()
+    //     let value = evt.target.value
+    //     let name = evt.target.name
+    //     console.log('target:', name)
+    //     this.setState({
+    //         lvalue: value,
+    //     })
+    // }
     render() {
         console.log('inputValue value ===== >', this.state.inputvalue)
         return (
@@ -66,13 +67,13 @@ class Form extends React.Component {
                     <Input
                         name="fName"
                         inputValue={this.state.fvalue}
-                        onInputChange={this.onInputFChange}
+                        onInputChange={this.onInputChange}
                         placeholder="Enter your first name"
                     />
                     <Input
                         name="lName"
                         inputValue={this.state.lvalue}
-                        onInputChange={this.onInputLChange}
+                        onInputChange={this.onInputChange}
                         placeholder="Enter your last name"
                     />
                     <Button title="submit" />
