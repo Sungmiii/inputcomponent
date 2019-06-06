@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Input reusable Component
 
-1. For interview exercise
+1. For practice
 2. Input is reusable 
 
 ### Problem 
