@@ -17,26 +17,17 @@ class Form extends React.Component {
         console.log('submit')
         evt.preventDefault()
         this.setState({
-            fValue: '',
-            lValue: ''
+            inputvalue: ''
         })
     }
-    onInputLChange = (evt) => {
-        console.log('input value:', evt.target.value)
-        evt.preventDefault()
-        let value = evt.target.value
-        this.setState({
-            lValue: value,
-        })
-    }
-    onInputFChange = (evt) => {
+    onInputChange = (evt) => {
         console.log('input value:', evt.target.value)
         evt.preventDefault()
         let value = evt.target.value
         let name = evt.target.name
         console.log('target:', name)
         this.setState({
-            fValue: value,
+            [name]: value,
         })
     }
     render() {
@@ -46,14 +37,14 @@ class Form extends React.Component {
                     onSubmit={this.onFormSubmit}>
                     <Input
                         name="fName"
-                        inputValue={this.state.fValue}
-                        onInputChange={this.onInputFChange}
+                        inputValue={this.state.inputvalue}
+                        onInputChange={this.onInputChange}
                         placeholder="Enter your first name"
                     />
                     <Input
                         name="lName"
-                        inputValue={this.state.lValue}
-                        onInputChange={this.onInputLChange}
+                        inputValue={this.state.inputvalue}
+                        onInputChange={this.onInputChange}
                         placeholder="Enter your last name"
                     />
                     <Button title="submit" />
