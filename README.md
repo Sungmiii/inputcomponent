@@ -7,4 +7,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Problem 
 
-1. target.value are same for both separate input component .... 
+1. target.value are same for both separate input component .... => solved : added condition in onInputChange
